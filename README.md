@@ -1,31 +1,27 @@
 # good-issue
 
-An agent skill for writing **shining, contribution-ready OSS issues** — with verified minimal reproductions, pinned environments, and root-cause investigation.
-
-> the best way to support OSS is to write good issues! have your agent make good reproductions.
->
-> This is the new contribution model.
+An agent skill for writing contribution-ready OSS issues. Verified minimal reproductions, pinned environments, root cause investigation.
 
 ## Why
 
-Maintainers have 500 open issues and 20 minutes. Issues that are actionable in one read get fixed; issues that require a back-and-forth interrogation get a `needs-more-info` label and die.
+Maintainers have 500 open issues and 20 minutes. Issues that are actionable in one read get fixed. Issues that need a round of follow-up questions get a `needs-more-info` label and die.
 
-Most agents, asked to "file an issue," will draft plausible-sounding text **without executing anything**. This skill flips that: the agent must *investigate* — reproduce the bug itself, minimize the repro by deletion, pin exact versions from the lockfile, search for duplicates, and trace the root cause in the dependency's source before writing a word.
+Ask most agents to "file an issue" and they'll draft plausible-sounding text without running anything. This skill makes the agent do the work first: reproduce the bug itself, cut the repro down until every line matters, pin exact versions from the lockfile, search for duplicates, and read the library source before writing a word.
 
 ## What the agent does
 
-1. **Understand** — capture symptom, expected vs. actual, and exact resolved versions (from the lockfile, not semver ranges)
-2. **Check for duplicates** — search open *and* closed issues, plus the changelog (the fix may already be released)
-3. **Build a minimal reproduction** — cut aggressively, then *actually run it*. A repro must fail with the trigger and pass without it
-4. **Investigate root cause** — follow the stack trace into the library's source; include file/line refs and a suggested fix when found
-5. **Write the issue** — using the project's own template, or the fallback templates in [`references/`](references/)
-6. **Review with the user, then file** — via `gh issue create`, with secrets and private code scrubbed
+1. Capture the symptom, expected vs. actual behavior, and exact resolved versions (from the lockfile, not semver ranges)
+2. Search open and closed issues for duplicates, and check the changelog in case the fix already shipped
+3. Build a minimal reproduction and actually run it. It has to fail with the trigger and pass without it
+4. Follow the stack trace into the library source and include file/line refs, plus a suggested fix when there is one
+5. Write the issue using the project's own template, or the fallbacks in [`references/`](references/)
+6. Show you the draft, then file it with `gh issue create`. Secrets and private code get scrubbed first
 
 The full quality bar is in [`SKILL.md`](SKILL.md) and [`references/repro-checklist.md`](references/repro-checklist.md).
 
 ## Install
 
-Copy this directory into any supported skills path:
+Clone into any supported skills path:
 
 ```bash
 # Global (all projects)
@@ -39,7 +35,7 @@ Also works in `~/.claude/skills/` and `.claude/skills/` for Claude Code.
 
 ## Use
 
-Just describe the problem — the skill activates on phrases like:
+Just describe the problem. The skill kicks in on things like:
 
 - "this npm package is throwing an error, can you report it?"
 - "I think I found a bug in `<library>`, file an issue upstream"
