@@ -1,0 +1,16 @@
+{
+  "name": "dotcfg",
+  "version": "1.1.0",
+  "description": "Tiny env-style config parser with interpolation and type coercion",
+  "type": "module",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "test": "npm run build && node --test dist/*.test.js"
+  },
+  "devDependencies": {
+    "@types/node": "^26.2.0",
+    "typescript": "^5.6.0"
+  }
+}
